@@ -1,0 +1,19 @@
+
+
+
+#' JAGST self-contained test
+#'
+#' This function allows you to express your love of cats.
+#' @param array expression array
+design design matrix (intercept included by default)
+inds indices of transcripts to be tested
+#' @keywords 
+#' @export
+#' @examples
+#' JAGSTself(arr,des,ind)
+ 
+JAGSTself <- function(array,design,inds){
+    require(limma)
+        
+
+}

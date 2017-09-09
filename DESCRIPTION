@@ -1,0 +1,9 @@
+Package: JAGST
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("M", "S", email = "david.swanson@medisin.uio.no", role = c("aut", "cre"))
+Description: Implementation of JAGST competitive and self-contained gene-set tests.  Additionally implements ROAST's direction and mixed tests by simulating from normal and chi-sq mixture distributions, respectively.
+Depends: R (>= 3.4.0)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
