@@ -7,7 +7,6 @@
 #' @param array expression array
 #' design design matrix (intercept included by default)
 #' inds indices of transcripts to be tested
-#' @keywords 
 #' @export
 #' @examples
 #' JAGSTself(arr,des,ind)
@@ -46,7 +45,6 @@ JAGSTself <- function(array,design,inds){
 #' inds indices of transcripts to be tested
 #' its number of iterations for null generation.  This number times num_nest is the total number of samples for the null.
 #' num_nest number of samples within each null iteration.  Cheap computationally, but decreasing returns efficiency gain.
-#' @keywords 
 #' @export
 #' @examples
 #' JAGSTcomp(arr,des,ind,its,num_nest)
@@ -84,7 +82,7 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 	  stat_nulls[[ee]] <- rchisq(2000,df=length(inds),ncp=sum(ncps_cor^2)) ## in these simulations would generally be assuming same size of correlated and uncorrelated test set so should not necessarily need to change df parameter but doing so here to prevent future issues
 		}
 	
-	comp_test_p <- calc_emp_p(unlist(stat_nulls,test_stat_cor[1])
+	comp_test_p <- calc_emp_p(unlist(stat_nulls),test_stat_cor[1])
 	return(comp_test_p)	
 	}
 
@@ -94,8 +92,8 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 #' calculate empirical p-value
 #'
 #' Not for export
-#' @param 
-#' @keywords 
+#' @param dist distribution
+#' num test statistic
 calc_emp_p <- function(dist,num){
 	L <- length(dist)	
 	plac <- which(order(c(dist,num))==(L+1))
