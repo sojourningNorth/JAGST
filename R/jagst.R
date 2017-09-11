@@ -4,9 +4,11 @@
 #' JAGST self-contained test
 #'
 #' JAGST self-contained test
+#'
 #' @param array expression array
-#' design design matrix (intercept included by default)
-#' inds indices of transcripts to be tested
+#' @param design design matrix (intercept included by default)
+#' @param inds indices of transcripts to be tested
+#'
 #' @export
 #' @examples
 #' JAGSTself(arr,des,ind)
@@ -40,11 +42,12 @@ JAGSTself <- function(array,design,inds){
 #' JAGST competitive test
 #'
 #' JAGST competitive test
+#'
 #' @param array expression array
-#' design design matrix (intercept included by default)
-#' inds indices of transcripts to be tested
-#' its number of iterations for null generation.  This number times num_nest is the total number of samples for the null.
-#' num_nest number of samples within each null iteration.  Cheap computationally, but decreasing returns efficiency gain.
+#' @param design design matrix (intercept included by default)
+#' @param inds indices of transcripts to be tested
+#' @param its number of iterations for null generation.  This number times num_nest is the total number of samples for the null.
+#' @param num_nest number of samples within each null iteration.  Cheap computationally, but decreasing returns efficiency gain.
 #' @export
 #' @examples
 #' JAGSTcomp(arr,des,ind,its,num_nest)
