@@ -2,3 +2,5 @@
 
 export(JAGSTcomp)
 export(JAGSTself)
+export(roastDir)
+export(roastMix)

@@ -12,7 +12,6 @@
 #' @export
 #' @examples
 #' JAGSTself(arr,des,ind)
- 
 JAGSTself <- function(array,design,inds){
     require(limma)
         
@@ -51,7 +50,6 @@ JAGSTself <- function(array,design,inds){
 #' @export
 #' @examples
 #' JAGSTcomp(arr,des,ind,its,num_nest)
- 
 JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
     require(limma)
     require(selectiveInference)
@@ -92,17 +90,103 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 
 
 
+
+
+
+
+#' ROAST directed test
+#'
+#' ROAST directed test
+#'
+#' @param array expression array
+#' @param design design matrix (intercept included by default)
+#' @param inds indices of transcripts to be tested
+#' @export
+#' @examples
+#' roastDir(arr,des,ind)
+roastDir <- function(array,design,inds){
+	require(limma)
+    len_inds <- length(inds)
+	dim_x <- dim(array)[1]
+    
+    des <- cbind(1,design)
+	ob <- limma::lmFit(array,design=des)
+	obmod <- limma::eBayes(ob)
+	statsCor <- obmod$t[,2]
+	
+	test_stat <- sum(statsCor[inds])
+	cov_mat <- cor(t(array[inds,])) # QR instead
+	
+	emp_dir <- 2*pnorm(-abs(test_stat),mean=0,sd=sqrt(sum(cov_mat)))
+		
+	return(emp_dir)
+	}
+
+
+
+
+
+#' ROAST undirected/mixed test
+#'
+#' ROAST undirected/mixed test
+#'
+#' @param array expression array
+#' @param design design matrix (intercept included by default)
+#' @param inds indices of transcripts to be tested
+#' @param samp_size number of samples off of which empirical p-value is calculated (not permutation based, but sampling from parametric distribution)
+#' @export
+#' @examples
+#' roastMix(arr,des,ind,samp_size)
+roastMix <- function(array,design,inds,samp_size=2000){
+	require(limma)
+    len_inds <- length(inds)
+	dim_x <- dim(array)[1]
+    
+    des <- cbind(1,design)
+	ob <- limma::lmFit(array,design=des)
+	obmod <- limma::eBayes(ob)
+	statsCor <- obmod$t[,2]
+
+	test_stat <- sum((statsCor[inds])^2)
+	cov_mat <- cor(t(array[inds,])) # QR instead
+
+	eg <- eigen(cov_mat)
+	mea <- rep(0,len_inds)
+	un_norm_vecs <- eg$vectors
+	deltas2 <- ((t(un_norm_vecs)%*%mea)/sqrt(eg$values))^2
+	
+	tmp <- list()
+	for (i in seq_along(eg$value)){
+		tmp[[i]] <- (eg$values[i])*rchisq(samp_size,df=1,ncp=deltas2[i])
+		}
+	vec <- rowSums(matrix(unlist(tmp),nrow=samp_size))
+	emp <- calc_emp_p(vec,test_stat)
+	return(emp)
+	
+	}
+
+
 #' calculate empirical p-value
 #'
 #' Not for export
 #' @param dist distribution
-#' num test statistic
+#' @param num test statistic
 calc_emp_p <- function(dist,num){
 	L <- length(dist)	
 	plac <- which(order(c(dist,num))==(L+1))
 	pval <- 1-plac/(L+2)
 	return(pval)	
 	}
+	
+	
+#' calculate map reals to (0,1)
+#'
+#' Not for export
+#' @param x argument to be evaluated by expit	
+expit <- function(x){
+	exp(x)/(1+exp(x))
+	}
+
 	
 	
 	
