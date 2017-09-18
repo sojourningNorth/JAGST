@@ -21,5 +21,8 @@ JAGSTcomp(array, design, inds, its = 200, num_nest = 2000)
 JAGST competitive test
 }
 \examples{
+dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
+design <- rep(0:1,each=50)
+inds <- sample(100,10)
 JAGSTcomp(arr,des,ind,its,num_nest)
 }

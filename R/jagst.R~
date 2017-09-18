@@ -5,7 +5,7 @@
 #'
 #' JAGST self-contained test
 #'
-#' @param array expression array.  Genes along rows.
+#' @param array expression array. Genes along rows.
 #' @param design design matrix (intercept included by default)
 #' @param inds indices of transcripts to be tested
 #'
@@ -42,7 +42,7 @@ JAGSTself <- function(array,design,inds){
 #'
 #' JAGST competitive test
 #'
-#' @param array expression array.  Genes along rows.
+#' @param array expression array. Genes along rows.
 #' @param design design matrix (intercept included by default)
 #' @param inds indices of transcripts to be tested
 #' @param its number of iterations for null generation.  This number times num_nest is the total number of samples for the null.
@@ -98,7 +98,7 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 #'
 #' ROAST directed test
 #'
-#' @param array expression array
+#' @param array expression array. Genes along rows.
 #' @param design design matrix (intercept included by default)
 #' @param inds indices of transcripts to be tested
 #' @export
@@ -130,7 +130,7 @@ roastDir <- function(array,design,inds){
 #'
 #' ROAST undirected/mixed test
 #'
-#' @param array expression array
+#' @param array expression array. Genes along rows.
 #' @param design design matrix (intercept included by default)
 #' @param inds indices of transcripts to be tested
 #' @param samp_size number of samples off of which empirical p-value is calculated (not permutation based, but sampling from parametric distribution)

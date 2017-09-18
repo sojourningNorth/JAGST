@@ -19,5 +19,8 @@ roastMix(array, design, inds, samp_size = 2000)
 ROAST undirected/mixed test
 }
 \examples{
+dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
+design <- rep(0:1,each=50)
+inds <- sample(100,10)
 roastMix(arr,des,ind,samp_size)
 }
