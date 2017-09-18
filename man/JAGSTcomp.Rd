@@ -7,7 +7,7 @@
 JAGSTcomp(array, design, inds, its = 200, num_nest = 2000)
 }
 \arguments{
-\item{array}{expression array}
+\item{array}{expression array.  Genes along rows.}
 
 \item{design}{design matrix (intercept included by default)}
 
