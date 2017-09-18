@@ -5,7 +5,7 @@
 #'
 #' JAGST self-contained test
 #'
-#' @param array expression array
+#' @param array expression array.  Genes along rows.
 #' @param design design matrix (intercept included by default)
 #' @param inds indices of transcripts to be tested
 #'
@@ -42,7 +42,7 @@ JAGSTself <- function(array,design,inds){
 #'
 #' JAGST competitive test
 #'
-#' @param array expression array
+#' @param array expression array.  Genes along rows.
 #' @param design design matrix (intercept included by default)
 #' @param inds indices of transcripts to be tested
 #' @param its number of iterations for null generation.  This number times num_nest is the total number of samples for the null.
