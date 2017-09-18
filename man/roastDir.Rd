@@ -17,8 +17,8 @@ roastDir(array, design, inds)
 ROAST directed test
 }
 \examples{
-dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
-design <- rep(0:1,each=50)
-inds <- sample(100,10)
+arr <- matrix(rnorm(100*100),nrow=100,ncol=100)
+des <- rep(0:1,each=50)
+ind <- sample(100,10)
 roastDir(arr,des,ind)
 }

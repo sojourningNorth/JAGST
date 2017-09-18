@@ -11,9 +11,9 @@
 #'
 #' @export
 #' @examples
-#' dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
-#' design <- rep(0:1,each=50)
-#' inds <- sample(100,10)
+#' arr <- matrix(rnorm(100*100),nrow=100,ncol=100)
+#' des <- rep(0:1,each=50)
+#' ind <- sample(100,10)
 #' JAGSTself(arr,des,ind)
 JAGSTself <- function(array,design,inds){
     require(limma)
@@ -52,10 +52,10 @@ JAGSTself <- function(array,design,inds){
 #' @param num_nest number of samples within each null iteration.  Cheap computationally, but decreasing returns efficiency gain.
 #' @export
 #' @examples
-#' dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
-#' design <- rep(0:1,each=50)
-#' inds <- sample(100,10)
-#' JAGSTcomp(arr,des,ind,its,num_nest)
+#' arr <- matrix(rnorm(100*100),nrow=100,ncol=100)
+#' des <- rep(0:1,each=50)
+#' ind <- sample(100,10)
+#' JAGSTcomp(arr,des,ind)
 JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
     require(limma)
     require(selectiveInference)
@@ -97,9 +97,6 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 
 
 
-
-
-
 #' ROAST directed test
 #'
 #' ROAST directed test
@@ -109,9 +106,9 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 #' @param inds indices of transcripts to be tested
 #' @export
 #' @examples
-#' dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
-#' design <- rep(0:1,each=50)
-#' inds <- sample(100,10)
+#' arr <- matrix(rnorm(100*100),nrow=100,ncol=100)
+#' des <- rep(0:1,each=50)
+#' ind <- sample(100,10)
 #' roastDir(arr,des,ind)
 roastDir <- function(array,design,inds){
 	require(limma)
@@ -145,10 +142,10 @@ roastDir <- function(array,design,inds){
 #' @param samp_size number of samples off of which empirical p-value is calculated (not permutation based, but sampling from parametric distribution)
 #' @export
 #' @examples
-#' dat <- matrix(rnorm(100*100),nrow=100,ncol=100)
-#' design <- rep(0:1,each=50)
-#' inds <- sample(100,10)
-#' roastMix(arr,des,ind,samp_size)
+#' arr <- matrix(rnorm(100*100),nrow=100,ncol=100)
+#' des <- rep(0:1,each=50)
+#' ind <- sample(100,10)
+#' roastMix(arr,des,ind)
 roastMix <- function(array,design,inds,samp_size=2000){
 	require(limma)
     len_inds <- length(inds)
