@@ -7,7 +7,7 @@
 JAGSTself(array, design, inds)
 }
 \arguments{
-\item{array}{expression array.  Genes along rows.}
+\item{array}{expression array. Genes along rows.}
 
 \item{design}{design matrix (intercept included by default)}
 
