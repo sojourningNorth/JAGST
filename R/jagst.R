@@ -28,7 +28,7 @@ JAGSTself <- function(array,design,inds){
 		cov_mat <- cov_mat + diag(increa,dim(cov_mat)[1])
 		}	
 
-	test_stat_cor <- t(statsCor[inds])%*%solve(cov_mat[inds,inds])%*%(statsCor[inds])
+	test_stat_cor <- t(statsCor[inds])%*%solve(cov_mat)%*%(statsCor[inds])
 	
 	p_self_cor <- pchisq(test_stat_cor[1],df=length(inds),lower.tail=F)
 	return(p_self_cor)	
@@ -67,9 +67,9 @@ JAGSTcomp <- function(array,design,inds,its=200,num_nest=2000){
 	if(kappa(cov_mat)>1500) {
 		increa <- svd(cov_mat)$d[1]/1500 
 		cov_mat <- cov_mat + diag(increa,dim(cov_mat)[1])
-		}	
+		}
 
-	test_stat_cor <- t(statsCor[inds])%*%solve(cov_mat[inds,inds])%*%(statsCor[inds])
+	test_stat_cor <- t(statsCor[inds])%*%solve(cov_mat)%*%(statsCor[inds])
 
 	mat_trans <- t(array)
 	stat_nulls <- list()
